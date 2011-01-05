@@ -1,21 +1,24 @@
 <script>
+function pinboardListener(tabId, changeInfo, tab) {
+	if(changeInfo.status == "loading") {
+		if(tab.url == "http://pinboard.in/add") {
+			chrome.tabs.remove(tabId);
+		}
+	}
+}
+
 chrome.browserAction.onClicked.addListener(function(tab) {
 	// You can't just get to the DOM of the current tab from javascript, you need to use "content scripts" and communicate with them using "message passing"
 	// see also: http://stackoverflow.com/questions/3767429/button-in-popup-that-get-selected-text-chrome-extension
 	chrome.tabs.executeScript(tab.id, {file: "selection.js"});
 	chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function (response) {
+		chrome.tabs.onUpdated.removeListener(pinboardListener);
 		var description = response.data;
 		window.open(
 			'http://pinboard.in/add?url=' + encodeURIComponent(tab.url) + '&description=' + encodeURIComponent(description) + '&title=' + encodeURIComponent(tab.title),
 			'_blank', 
-            'toolbar=no,width=700,height=350');
-        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-            if(changeInfo.status == "loading") {
-                if(tab.url == "http://pinboard.in/add") {
-                    chrome.tabs.remove(tabId);
-                }
-            }
-        });            
+            		'toolbar=no,width=700,height=350');
+        	chrome.tabs.onUpdated.addListener(pinboardListener);
 	});
 });
 </script>
