@@ -1,5 +1,5 @@
 <script>
-function pinboardListener(tabId, changeInfo, tab) {
+var pinboardListener = function (tabId, changeInfo, tab) {
 	if(changeInfo.status == "loading") {
 		if(tab.url == "http://pinboard.in/add") {
 			chrome.tabs.remove(tabId);
