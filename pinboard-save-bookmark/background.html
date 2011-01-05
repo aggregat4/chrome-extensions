@@ -5,10 +5,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	chrome.tabs.executeScript(tab.id, {file: "selection.js"});
 	chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function (response) {
 		var description = response.data;
-		void(open(
+		window.open(
 			'http://pinboard.in/add?url=' + encodeURIComponent(tab.url) + '&description=' + encodeURIComponent(description) + '&title=' + encodeURIComponent(tab.title),
-			'Pinboard', 
-			'toolbar=no,width=700,height=350'));
+			'_blank', 
+            'toolbar=no,width=700,height=350');
+        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+            if(changeInfo.status == "loading") {
+                if(tab.url == "http://pinboard.in/add") {
+                    chrome.tabs.remove(tabId);
+                }
+            }
+        });            
 	});
 });
 </script>

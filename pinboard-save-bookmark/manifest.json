@@ -3,11 +3,8 @@
 	"version": "1.0.0",
 	"description": "A browser button that shows the normal Pinboard.in 'Save a Bookmark' page in a popup",
 	"background_page" : "background.html",
+	"permissions": ["http://*/*", "https://*/*", "tabs"],
 	"browser_action": {
 		"default_icon": "pinboard16.png"
-	},
-	"permissions": [
-		"http://*/*",
-		"tabs"
-	]
+	}
 }
