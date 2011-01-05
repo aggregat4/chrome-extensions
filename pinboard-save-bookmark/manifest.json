@@ -1,6 +1,6 @@
 {
 	"name": "Pinboard.in 'Save a Bookmark' button",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A browser button that shows the normal Pinboard.in 'Save a Bookmark' page in a popup",
 	"background_page" : "background.html",
 	"permissions": ["http://*/*", "https://*/*", "tabs"],
