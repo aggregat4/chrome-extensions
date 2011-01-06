@@ -1,10 +1,12 @@
 {
-	"name": "Pinboard.in 'Save a Bookmark' button",
-	"version": "1.0.4",
-	"description": "A browser button that shows the normal Pinboard.in 'Save a Bookmark' page in a popup",
+	"name" : "Pinboard.in 'Save a Bookmark' button",
+	"version" : "1.0.5",
+	"description" : "A browser button that shows the normal Pinboard.in 'Save a Bookmark' page in a popup",
 	"background_page" : "background.html",
-	"permissions": ["http://*/*", "https://*/*", "tabs"],
-	"browser_action": {
-		"default_icon": "pinboard16.png"
-	}
+	"permissions" : ["http://*/*", "https://*/*", "tabs"],
+	"icons" : {
+        "16"  : "bluepin16x16.png",
+        "48"  : "bluepin48x48.png",
+        "128" : "bluepin128x128.png" },
+    "browser_action": { "default_icon" : "bluepin16x16.png" }
 }
